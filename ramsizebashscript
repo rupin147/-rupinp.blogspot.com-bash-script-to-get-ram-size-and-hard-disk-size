@@ -19,7 +19,7 @@ echo "YOUR HARD SIZE --->>> $m\033[0m"
 read -r -p "Want to get your hard disk utilized [y/n]" CONT
 case "$CONT" in
 y|Y )
-echo "$k" | dialog  --title "YOUR HARD DISK UTILIZED" --gauge "\nYour Hard Disk Size is $m \n\n       rupinp@blogspot.com \n\n HARD UTITLIZED IS " 13 70 0
+echo "$k" | dialog  --title "YOUR HARD DISK UTILIZED" --gauge "\nYour Hard Disk Size is $m \n\n       rupinp@blogspot.com \n\n HARD UTITLIZED SIZE IS " 13 70 0
 ;;
 n|N )
 echo "\033[1;31m Thank you , visit rupinp@blogspot.com\033[0m";;
