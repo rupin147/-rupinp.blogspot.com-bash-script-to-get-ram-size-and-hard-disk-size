@@ -1,0 +1,28 @@
+#!/usr/bin/bash
+a=`cat /proc/meminfo | grep MemTotal | grep -o "[0-9]*"`
+b=`cat /proc/meminfo | grep MemFree | grep -o "[0-9]*"`
+c=`echo "scale=1; $a/1000000" | bc`
+d=`echo "scale=1; $b/1000" | bc`
+echo "\033[0;36m Total RAM $c GB"
+echo "Free RAM $d MB"
+e=`cat /proc/meminfo | grep SwapTotal | grep -o "[0-9]*"`
+f=`cat /proc/meminfo | grep SwapFree | grep -o "[0-9]*"`
+g=`echo "scale=1; $e/1000000" | bc`
+h=`echo "scale=1; $f/1000" | bc`
+i=`echo "scale=1; $f/1000000" | bc`
+echo "Total SWAP Memory  $g GB"
+echo "Free SWAP Memory $h MB  =~ $i GB"  
+j=`inxi -D | grep -o "[0-9]*.[0-9]*%" | grep -o "[0-9].*" | head -n1 `
+k=`inxi -D | grep -o "[0-9]*.[0-9]*%" | grep -o "[0-9]*" | head -n1`
+m=`inxi -D | cut -d " " -f8 | head -n1`
+echo "YOUR HARD SIZE --->>> $m\033[0m"
+read -r -p "Want to get your hard disk utilized [y/n]" CONT
+case "$CONT" in
+y|Y )
+echo "$k" | dialog  --title "YOUR HARD DISK UTILIZED" --gauge "\nYour Hard Disk Size is $m \n\n       rupinp@blogspot.com \n\n HARD UTITLIZED IS " 13 70 0
+;;
+n|N )
+echo "\033[1;31m Thank you , visit rupinp@blogspot.com\033[0m";;
+* )
+echo  "\033[1;31m  Thank you , visit rupinp@blogspot.com\033[0m";;
+esac
